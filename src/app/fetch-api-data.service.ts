@@ -103,3 +103,38 @@ export class GetAllMoviesService extends ErrorHandlingService {
       );
   }
 }
+
+@Injectable({
+  providedIn: 'root',
+})
+export class UserProfileService extends ErrorHandlingService {
+  constructor(private http: HttpClient) {
+    super();
+  }
+
+  // Get user profile data
+  getUserProfile(): Observable<any> {
+    const token = localStorage.getItem('token');
+    return this.http
+      .get(apiUrl + '/users', {
+        headers: new HttpHeaders({
+          Authorization: 'Bearer ' + token,
+          'Content-Type': 'application/json',
+        }),
+      })
+      .pipe(catchError(this.handleError));
+  }
+
+  // Update user profile data
+  updateUserProfile(userData: any): Observable<any> {
+    const token = localStorage.getItem('token');
+    return this.http
+      .put(apiUrl + '/users', userData, {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + token,
+        }),
+      })
+      .pipe(catchError(this.handleError));
+  }
+}
