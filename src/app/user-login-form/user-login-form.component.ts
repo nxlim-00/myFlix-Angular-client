@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { UserRegistrationService } from '../fetch-api-data.service';
+import { UserLoginService } from '../fetch-api-data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-login-form',
@@ -12,9 +13,10 @@ export class UserLoginFormComponent implements OnInit {
   @Input() loginData = { Username: '', Password: '' };
 
   constructor(
-    public fetchApiData: UserRegistrationService,
+    public fetchApiData: UserLoginService,
     public dialogRef: MatDialogRef<UserLoginFormComponent>,
-    public snackBar: MatSnackBar
+    public snackBar: MatSnackBar,
+    private router: Router
   ) {}
 
   ngOnInit(): void {}
@@ -23,13 +25,15 @@ export class UserLoginFormComponent implements OnInit {
   loginUser(): void {
     this.fetchApiData.userLogin(this.loginData).subscribe(
       (result) => {
+        localStorage.setItem('user', JSON.stringify(result.user.Username));
+        localStorage.setItem('token', result.token);
         // Logic for successful login goes here
         this.dialogRef.close(); // Close the modal on success
         this.snackBar.open('Login successful!', 'OK', {
           duration: 2000,
         });
-        localStorage.setItem('currentUser', JSON.stringify(result.user));
-        localStorage.setItem('token', result.token);
+        // navigates to /movies after successful login
+        this.router.navigate(['movies']);
       },
       (error) => {
         this.snackBar.open('Login failed. Please try again.', 'OK', {
