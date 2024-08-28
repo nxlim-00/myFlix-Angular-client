@@ -26,7 +26,12 @@
     </form>
   </mat-card-content>
   <mat-card-actions
-    ><button mat-raised-button color="primary" type="submit">
+    ><button
+      mat-raised-button
+      (click)="loginUser()"
+      color="primary"
+      type="submit"
+    >
       Login
     </button></mat-card-actions
   >
