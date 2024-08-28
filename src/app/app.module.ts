@@ -14,6 +14,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatIconModule } from '@angular/material/icon';
+import { MatToolbar } from '@angular/material/toolbar';
+import { MatMenu } from '@angular/material/menu';
 import { FormsModule } from '@angular/forms';
 
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
@@ -27,6 +29,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
   { path: 'movies', component: MovieCardComponent },
+  { path: 'profile', component: UserProfileComponent },
   { path: '', redirectTo: 'welcome', pathMatch: 'prefix' },
 ];
 
@@ -54,6 +57,8 @@ const appRoutes: Routes = [
     FormsModule,
     RouterModule.forRoot(appRoutes),
     MatIconModule,
+    MatToolbar,
+    MatMenu,
   ],
   providers: [provideAnimationsAsync()],
   bootstrap: [AppComponent],
