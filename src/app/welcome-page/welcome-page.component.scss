@@ -1,0 +1,41 @@
+.main-page {
+  justify-content: center;
+  padding-top: 100px;
+  align-items: center;
+  background-color: #03045e; /* Sets background color */
+  width: 100%;
+  height: 100vh; /* Makes the div cover the full height of the viewport */
+  color: #caf0f8; /* Sets text color for welcome title */
+  text-align: center; /* Centers the text inside the div */
+}
+
+.welcome-title {
+  margin-bottom: 20px; /* Adds space below the title */
+}
+
+.button-group {
+  display: flex; /* Aligns buttons next to each other */
+  flex-direction: row;
+  gap: 10px; /* Adds space between buttons */
+}
+
+button {
+  color: #90e0ef; /* Button text color */
+  background-color: transparent; /* Button background color */
+  border: none;
+  cursor: pointer;
+  //padding: 10px 15px;
+  font-size: 16px;
+  transition: background-color 0.3s;
+
+  border-radius: 4px; /* Rounded corners for the button */
+  padding: 10px 20px; /* Padding inside the button */
+  font-size: 1rem; /* Button font size */
+  transition: background-color 0.3s; /* Smooth background color transition */
+
+  &:hover {
+    background-color: rgba(144, 224, 239, 0.2); /* Adds a slight hover effect */
+    color: #caf0f8;
+    border: 1px solid #caf0f8;
+  }
+}

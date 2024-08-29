@@ -1,9 +1,10 @@
-<mat-card>
+<mat-card class="loginContainer">
   <mat-card-header>
-    <mat-card-title>Login:</mat-card-title>
+    <mat-card-title>Login</mat-card-title>
   </mat-card-header>
   <mat-card-content>
     <form (ngSubmit)="loginUser()">
+      <!--   <label for="Username">Username: </label> -->
       <mat-form-field>
         <input
           matInput
@@ -33,6 +34,7 @@
       type="submit"
     >
       Login
-    </button></mat-card-actions
+    </button>
+    <a (click)="closeDialog()"> Close </a></mat-card-actions
   >
 </mat-card>
