@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { GetAllMoviesService } from '../fetch-api-data.service';
 import { MatDialog } from '@angular/material/dialog';
 import { SynopsisComponent } from '../synopsis/synopsis.component';
+import { GenreInfoComponent } from '../genre-info/genre-info.component';
 
 @Component({
   selector: 'app-movie-card',
@@ -31,6 +32,14 @@ export class MovieCardComponent {
   // Function to open the synopsis dialog
   openSynopsisDialog(movie: any): void {
     this.dialog.open(SynopsisComponent, {
+      data: movie, // Pass the entire movie object to the dialog
+      width: '500px',
+    });
+  }
+
+  // Function to open the genre dialog
+  openGenreDialog(movie: any): void {
+    this.dialog.open(GenreInfoComponent, {
       data: movie, // Pass the entire movie object to the dialog
       width: '500px',
     });
