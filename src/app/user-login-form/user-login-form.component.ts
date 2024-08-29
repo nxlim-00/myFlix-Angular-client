@@ -42,4 +42,9 @@ export class UserLoginFormComponent implements OnInit {
       }
     );
   }
+
+  // Close the dialog
+  closeDialog(): void {
+    this.dialogRef.close();
+  }
 }
