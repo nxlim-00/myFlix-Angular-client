@@ -1,0 +1,34 @@
+<div class="container">
+  <mat-card *ngIf="movie">
+    <div class="combiner">
+      <div class="imageContainer">
+        <img class="img" [src]="movie.ImagePath" [alt]="movie.Title" />
+      </div>
+      <div class="infoContainer">
+        <mat-card-header>
+          <mat-card-title>{{ movie.Title }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p><strong>Description: </strong> {{ movie.Description }}</p>
+          <br />
+          <p>
+            <strong>Genre: </strong
+            ><span (click)="openGenreDialog(movie)" class="clickable">{{
+              movie.Genre.Name
+            }}</span>
+          </p>
+          <br />
+          <p><strong>Director: </strong>{{ movie.Director.Name }}</p>
+          <p><strong>Bio: </strong>{{ movie.Director.Bio }}</p>
+          <p><strong>Birth: </strong>{{ movie.Director.Birth }}</p>
+          <p><strong>Death: </strong>{{ movie.Director.Death }}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button (click)="navigateToAllMovies()">
+            Back
+          </button>
+        </mat-card-actions>
+      </div>
+    </div>
+  </mat-card>
+</div>
