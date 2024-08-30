@@ -1,18 +1,47 @@
-.movieView {
-  padding: 20px;
-  background-color: #03045e;
-  width: 100%;
-  height: 100vh; /* Makes the div cover the full height of the viewport */
+.responsive-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 24px;
 }
 
-mat-card {
-  margin: 10px;
+.container {
+  padding: 24px;
+  background-color: #03045e;
+  //width: 100vw;
+  min-height: 100vh;
+}
+
+/* mat-card-actions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: center;
+} */
+
+img {
+  width: 100%;
+  object-fit: cover;
 }
 
 mat-card-actions {
-  justify-content: space-evenly;
+  display: flex;
+  flex-direction: row; /* Arrange the buttons and icon in two rows */
+  align-items: flex-start; /* Align buttons to the left */
+  padding: 8px 16px;
 }
 
-.img {
-  margin: 10px;
+.action-buttons {
+  display: flex; /* Display buttons in a row */
+  gap: 10px; /* Add space between buttons */
+  width: 100%; /* Make buttons row full width */
+}
+
+.icon-row {
+  display: flex; /* Display icon in a row */
+  justify-content: flex-end; /* Align the icon to the right */
+  width: 100%; /* Make icon row full width */
+  margin-top: 8px; /* Add some space above the icon row */
+}
+
+.favorite-icon {
+  cursor: pointer; /* Add a pointer cursor on hover */
 }

@@ -9,8 +9,11 @@
       <p><strong>Birthday: </strong> {{ userProfile?.Birthday | date }}</p>
     </mat-card-content>
     <mat-card-actions>
-      <button color="primary" (click)="openUpdateDialog()">
+      <button class="updateBtn" color="primary" (click)="openUpdateDialog()">
         Update Profile
+      </button>
+      <button class="logoutBtn" (click)="deleteAccount()">
+        Delete Account
       </button>
     </mat-card-actions>
   </mat-card>

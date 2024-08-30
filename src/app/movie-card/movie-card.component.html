@@ -1,4 +1,4 @@
-<div style="display: flex" class="movieView">
+<div class="container responsive-grid">
   <mat-card *ngFor="let movie of movies">
     <mat-card-header>
       <mat-card-title>{{ movie.Title }}</mat-card-title>
@@ -7,7 +7,7 @@
       >
     </mat-card-header>
     <img class="img" src="{{ movie.ImagePath }}" alt="{{ movie.Title }}" />
-    <mat-card-actions>
+    <mat-card-actions class="action-buttons">
       <button mat-button (click)="openGenreDialog(movie)" color="primary">
         {{ movie.Genre.Name }}
       </button>
@@ -17,7 +17,9 @@
       <button mat-button (click)="openSynopsisDialog(movie)" color="primary">
         Synopsis
       </button>
-      <mat-icon>favorite_border</mat-icon>
+      <div class="icon-row">
+        <mat-icon class="favorite-icon">favorite_border</mat-icon>
+      </div>
     </mat-card-actions>
   </mat-card>
 </div>
