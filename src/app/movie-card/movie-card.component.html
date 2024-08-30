@@ -3,21 +3,38 @@
     <mat-card-header>
       <mat-card-title>{{ movie.Title }}</mat-card-title>
       <mat-card-subtitle
-        >Directed by: {{ movie.Director.Name }}</mat-card-subtitle
+        >Directed by:
+        <span class="subtitle">{{
+          movie.Director.Name
+        }}</span></mat-card-subtitle
       >
     </mat-card-header>
-    <img class="img" src="{{ movie.ImagePath }}" alt="{{ movie.Title }}" />
+    <img
+      (click)="navigateToSingleMovie(movie)"
+      class="img"
+      src="{{ movie.ImagePath }}"
+      alt="{{ movie.Title }}"
+    />
     <mat-card-actions class="action-buttons">
-      <button mat-button (click)="openGenreDialog(movie)" color="primary">
-        {{ movie.Genre.Name }}
-      </button>
-      <button mat-button (click)="openDirectorDialog(movie)" color="primary">
-        Director
-      </button>
-      <button mat-button (click)="openSynopsisDialog(movie)" color="primary">
-        Synopsis
-      </button>
+      <div class="buttons">
+        <button mat-button (click)="openGenreDialog(movie)" color="primary">
+          {{ movie.Genre.Name }}
+        </button>
+        <button mat-button (click)="openDirectorDialog(movie)" color="primary">
+          Director
+        </button>
+        <button mat-button (click)="openSynopsisDialog(movie)" color="primary">
+          Synopsis
+        </button>
+      </div>
       <div class="icon-row">
+        <button
+          mat-button
+          (click)="navigateToSingleMovie(movie)"
+          color="primary"
+        >
+          More Info
+        </button>
         <mat-icon class="favorite-icon">favorite_border</mat-icon>
       </div>
     </mat-card-actions>
