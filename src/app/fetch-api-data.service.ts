@@ -6,6 +6,8 @@ import {
   HttpErrorResponse,
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { UserProfile } from './user-profile/user-profile.model';
 
 // Declaring the API URL that will provide data
 const apiUrl = 'https://myflixx-movie-app-2d5cece4bfb1.herokuapp.com';
@@ -57,7 +59,7 @@ export class UserRegistrationService extends ErrorHandlingService {
           'Content-Type': 'application/json', // Ensure correct header for JSON content
         }),
       })
-      .pipe(catchError(this.handleError)); // Handle errors using `handleError` method
+      .pipe(catchError(this.handleError));
   }
 }
 
@@ -88,6 +90,7 @@ export class GetAllMoviesService extends ErrorHandlingService {
   constructor(private http: HttpClient) {
     super();
   }
+
   // API call to get all movies
   getAllMovies(): Observable<any> {
     const token = localStorage.getItem('token'); // Retrieve token from localStorage
@@ -113,28 +116,66 @@ export class UserProfileService extends ErrorHandlingService {
   }
 
   // Get user profile data
-  getUserProfile(): Observable<any> {
+  getUserProfile(): Observable<UserProfile> {
     const token = localStorage.getItem('token');
+    const currentUserObject = JSON.parse(
+      localStorage.getItem('currentUser') || '{}'
+    ); // Parse the currentUser object from localStorage
+
+    if (!currentUserObject || !currentUserObject._id) {
+      // Handle case where currentUser object or ID is missing
+      console.error('currentUser object or ID is missing');
+      return new Observable<UserProfile>((observer) =>
+        observer.error('currentUser object or ID is missing')
+      );
+    }
+
     return this.http
-      .get(apiUrl + '/users', {
+      .get<UserProfile>(`${apiUrl}/users/${currentUserObject.Username}`, {
         headers: new HttpHeaders({
-          Authorization: 'Bearer ' + token,
+          Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json',
         }),
       })
-      .pipe(catchError(this.handleError));
+      .pipe(
+        map((userProfile) => {
+          // Handle potential null values or empty strings
+          userProfile.Username = userProfile.Username || '';
+          userProfile.Email = userProfile.Email || '';
+          userProfile.Birthday = userProfile.Birthday || '';
+          return userProfile;
+        }),
+        catchError(this.handleError)
+      );
   }
 
   // Update user profile data
-  updateUserProfile(userData: any): Observable<any> {
+  updateUserProfile(
+    userProfile: Partial<UserProfile>
+  ): Observable<UserProfile> {
     const token = localStorage.getItem('token');
+    const currentUserObject = JSON.parse(
+      localStorage.getItem('currentUser') || '{}'
+    );
+
+    if (!currentUserObject || !currentUserObject._id) {
+      console.error('currentUser object or ID is missing');
+      return new Observable<UserProfile>((observer) =>
+        observer.error('currentUser object or ID is missing')
+      );
+    }
+
     return this.http
-      .put(apiUrl + '/users', userData, {
-        headers: new HttpHeaders({
-          'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + token,
-        }),
-      })
+      .put<UserProfile>(
+        `${apiUrl}/users/${currentUserObject.Username}`,
+        userProfile,
+        {
+          headers: new HttpHeaders({
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          }),
+        }
+      )
       .pipe(catchError(this.handleError));
   }
 }
