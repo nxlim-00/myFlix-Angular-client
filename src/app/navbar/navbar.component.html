@@ -1,0 +1,13 @@
+<nav class="navbar">
+  <span class="navbar-brand">myFlix</span>
+  <div
+    *ngIf="isAuthenticated() && currentRoute !== '/welcome'"
+    class="navbar-links"
+  >
+    <a routerLink="/movies" class="nav-link">Home</a>
+    <a routerLink="/profile" class="nav-link">Profile</a>
+    <a routerLink="/favorites" class="nav-link">My Favorites</a>
+    <!--   <button (click)="logout()" class="nav-link">Logout</button> -->
+    <mat-icon (click)="logout()" aria-hidden="false">logout</mat-icon>
+  </div>
+</nav>
