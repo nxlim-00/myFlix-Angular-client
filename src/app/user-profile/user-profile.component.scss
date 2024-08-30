@@ -1,0 +1,59 @@
+/* user-profile.component.scss */
+.mainPage {
+  display: flex; /* Add flex to center align the content */
+  justify-content: baseline;
+  align-items: baseline;
+  align-content: baseline;
+  //padding: 50px;
+  background-color: #03045e;
+  width: 100%;
+  height: 100vh;
+  color: #caf0f8;
+}
+
+.user-profile-card {
+  width: 600px; /* Set a fixed width for the card */
+  max-width: 90%; /* Allow it to shrink for smaller screens */
+  margin: 20px auto; /* Center the card horizontally */
+  padding: 20px; /* Optional: add padding inside the card */
+  color: #03045e;
+  background-color: #caf0f8;
+}
+
+mat-card-title {
+  font-weight: bold;
+}
+
+.user-info,
+.update-form {
+  width: 45%;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+button {
+  background-color: #caf0f8;
+  color: #03045e;
+  border: 1px solid #03045e;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+  margin-bottom: 10px;
+}
+
+button:hover {
+  background-color: #03045e;
+  color: #caf0f8;
+  border: 1px solid #caf0f8;
+}
+
+mat-card-actions {
+  display: flex; /* Make sure the actions container is a flex container */
+  justify-content: flex-end; /* Align the button to the right */
+  margin-top: auto; /* Push the button to the bottom */
+}

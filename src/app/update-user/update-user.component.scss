@@ -1,0 +1,69 @@
+.updateContainer {
+  max-width: 400px; /* Set a maximum width for the card */
+  margin: auto; /* Center the card horizontally */
+  padding: 20px; /* Add padding inside the card */
+  background-color: #fff; /* Light background color */
+  border: 1px solid #caf0f8;
+  border-radius: 7%; /* Rounded corners for the card */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+}
+
+/* Style for the card header */
+mat-card-header {
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+/* Style for the card title */
+mat-card-title {
+  font-weight: bold; /* Bold title */
+  color: #03045e;
+}
+
+/* Style for the card content */
+mat-card-content {
+  padding: 20px 0; /* Padding inside the card content */
+}
+
+/* Style for form fields */
+mat-form-field {
+  width: 100%; /* Full width of the card */
+}
+
+/* Style for the button */
+mat-card-actions {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Style for the button */
+button {
+  background-color: #caf0f8; /* Button background color */
+  color: #03045e; /* Button text color */
+  border: 1px solid #03045e;
+  border-radius: 4px; /* Rounded corners for the button */
+  padding: 10px 20px; /* Padding inside the button */
+  font-size: 1rem; /* Button font size */
+  transition: background-color 0.3s; /* Smooth background color transition */
+  margin-bottom: 10px;
+}
+
+button:hover {
+  background-color: #03045e; /* Darker color on hover */
+  color: #caf0f8;
+  border: 1px solid #caf0f8;
+}
+
+button:disabled {
+  color: #03045e;
+}
+
+a {
+  cursor: pointer;
+  margin-top: 15px;
+  text-decoration: underline;
+  color: #0077b6;
+}
+a:hover {
+  color: #03045e;
+}
