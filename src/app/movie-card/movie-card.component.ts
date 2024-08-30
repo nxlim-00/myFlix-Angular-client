@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { SynopsisComponent } from '../synopsis/synopsis.component';
 import { GenreInfoComponent } from '../genre-info/genre-info.component';
 import { DirectorInfoComponent } from '../director-info/director-info.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-movie-card',
@@ -15,7 +16,8 @@ export class MovieCardComponent {
 
   constructor(
     public fetchMovies: GetAllMoviesService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -52,5 +54,9 @@ export class MovieCardComponent {
       data: movie, // Pass the entire movie object to the dialog
       width: '500px',
     });
+  }
+
+  navigateToSingleMovie(movie: any): void {
+    this.router.navigate(['/movies', movie.Title]); // Use the movie's ID to navigate
   }
 }
