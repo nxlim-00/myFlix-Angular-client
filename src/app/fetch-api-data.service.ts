@@ -178,4 +178,20 @@ export class UserProfileService extends ErrorHandlingService {
       )
       .pipe(catchError(this.handleError));
   }
+
+  // Delete user account
+  deleteUserAccount(username: string): Observable<any> {
+    const token = localStorage.getItem('token');
+
+    return this.http
+      .delete(`${apiUrl}/users/${username}`, {
+        headers: new HttpHeaders({
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        }),
+      })
+      .pipe(
+        catchError(this.handleError) // Use your existing error handling method
+      );
+  }
 }
