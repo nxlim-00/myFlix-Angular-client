@@ -1,0 +1,17 @@
+<div class="mainPage">
+  <mat-card class="user-profile-card">
+    <mat-card-header>
+      <mat-card-title>Hello {{ userProfile?.Username }}!</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p><strong>Username: </strong> {{ userProfile?.Username }}</p>
+      <p><strong>Email: </strong> {{ userProfile?.Email }}</p>
+      <p><strong>Birthday: </strong> {{ userProfile?.Birthday | date }}</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button color="primary" (click)="openUpdateDialog()">
+        Update Profile
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
