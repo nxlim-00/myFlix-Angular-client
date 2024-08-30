@@ -105,6 +105,21 @@ export class GetAllMoviesService extends ErrorHandlingService {
         catchError(this.handleError)
       );
   }
+
+  //API call to get single movie by id
+  getSingleMovie(movieId: string): Observable<any> {
+    const token = localStorage.getItem('token'); // Retrieve token from localStorage
+    return this.http
+      .get(apiUrl + `/movies/${movieId}`, {
+        headers: new HttpHeaders({
+          Authorization: 'Bearer ' + token, // Add token to Authorization header
+        }),
+      })
+      .pipe(
+        map(this.extractResponseData), // Extract response data
+        catchError(this.handleError)
+      );
+  }
 }
 
 @Injectable({
