@@ -17,6 +17,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbar } from '@angular/material/toolbar';
 import { MatMenu } from '@angular/material/menu';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -25,6 +26,13 @@ import { UserLoginFormComponent } from './user-login-form/user-login-form.compon
 import { MovieCardComponent } from './movie-card/movie-card.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { DirectorInfoComponent } from './director-info/director-info.component';
+import { SynopsisComponent } from './synopsis/synopsis.component';
+import { GenreInfoComponent } from './genre-info/genre-info.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { FavoriteListComponent } from './favorite-list/favorite-list.component';
+import { UpdateUserComponent } from './update-user/update-user.component';
+import { DateFormatPipe } from './user-profile/user-profile.component';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
@@ -41,6 +49,13 @@ const appRoutes: Routes = [
     MovieCardComponent,
     WelcomePageComponent,
     UserProfileComponent,
+    DirectorInfoComponent,
+    SynopsisComponent,
+    GenreInfoComponent,
+    NavbarComponent,
+    FavoriteListComponent,
+    UpdateUserComponent,
+    DateFormatPipe,
   ],
   imports: [
     BrowserModule,
@@ -59,6 +74,7 @@ const appRoutes: Routes = [
     MatIconModule,
     MatToolbar,
     MatMenu,
+    ReactiveFormsModule,
   ],
   providers: [provideAnimationsAsync()],
   bootstrap: [AppComponent],
