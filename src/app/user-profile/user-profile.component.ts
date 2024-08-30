@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog'; // Import MatDialog
 import { UserProfileService } from '../fetch-api-data.service';
 import { UserProfile } from './user-profile.model';
 import { UpdateUserComponent } from '../update-user/update-user.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-profile',
@@ -14,7 +15,8 @@ export class UserProfileComponent implements OnInit {
 
   constructor(
     private dialog: MatDialog, // Add MatDialog to the constructor
-    public fetchUserdata: UserProfileService
+    public fetchUserdata: UserProfileService,
+    public router: Router
   ) {}
 
   ngOnInit(): void {
@@ -40,6 +42,38 @@ export class UserProfileComponent implements OnInit {
         // You may also want to reload or refetch the data from the server
       }
     });
+  }
+
+  deleteAccount(): void {
+    if (
+      this.userProfile &&
+      confirm(
+        'Are you sure you want to delete your account? This action cannot be undone.'
+      )
+    ) {
+      this.fetchUserdata
+        .deleteUserAccount(this.userProfile.Username)
+        .subscribe({
+          next: () => {
+            // Clear localStorage
+            localStorage.removeItem('token');
+            localStorage.removeItem('currentUser' || '{}');
+
+            // Navigate to the login page or home page
+            this.router.navigate(['/welcome']); // Change '/welcome' to the route you want to navigate to
+
+            // Optionally, show a success message
+            alert('Your account has been deleted successfully.');
+          },
+          error: (error) => {
+            // Handle error
+            console.error('Failed to delete account:', error);
+            alert(
+              'An error occurred while deleting your account. Please try again later.'
+            );
+          },
+        });
+    }
   }
 }
 @Pipe({ name: 'dateFormat' })
