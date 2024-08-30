@@ -11,11 +11,13 @@
 
 .welcome-title {
   margin-bottom: 20px; /* Adds space below the title */
+  font-size: 2rem;
 }
 
 .button-group {
   display: flex; /* Aligns buttons next to each other */
   flex-direction: row;
+  justify-content: center;
   gap: 10px; /* Adds space between buttons */
 }
 
