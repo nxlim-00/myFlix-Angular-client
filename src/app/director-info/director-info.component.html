@@ -1,16 +1,18 @@
-<h1 mat-dialog-title>{{ data.Director.Name }}</h1>
-<div mat-dialog-content>
-  <p><strong>Bio: </strong> {{ data.Director.Bio }}</p>
-  <p><strong>Birth: </strong> {{ data.Director.Birth | date }}</p>
-  <p>
-    <strong>Death: </strong>
-    <!-- checks if there's a death date, if not N/A gets displayed -->
-    <span *ngIf="data.Director.Death !== 'N/A'; else noDeathDate">{{
-      data.Director.Death | date
-    }}</span>
-    <ng-template #noDeathDate>{{ data.Director.Death }}</ng-template>
-  </p>
-</div>
-<div mat-dialog-actions>
-  <button mat-button (click)="closeDialog()">Close</button>
+<div class="container">
+  <h1 mat-dialog-title>{{ data.Director.Name }}</h1>
+  <div mat-dialog-content>
+    <p><strong>Bio: </strong> {{ data.Director.Bio }}</p>
+    <p><strong>Birth: </strong> {{ data.Director.Birth | date }}</p>
+    <p>
+      <strong>Death: </strong>
+      <!-- checks if there's a death date, if not N/A gets displayed -->
+      <span *ngIf="data.Director.Death !== 'N/A'; else noDeathDate">{{
+        data.Director.Death | date
+      }}</span>
+      <ng-template #noDeathDate>{{ data.Director.Death }}</ng-template>
+    </p>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="closeDialog()">Close</button>
+  </div>
 </div>

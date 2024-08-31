@@ -1,0 +1,56 @@
+.container {
+  display: flex; /* Add flex to center align the content */
+  justify-content: baseline;
+  align-items: baseline;
+  align-content: baseline;
+  //padding: 50px;
+  background-color: #03045e;
+  width: 100%;
+  min-height: 100vh;
+  color: #caf0f8;
+}
+
+.clickable {
+  color: #0077b6;
+  cursor: pointer;
+}
+
+.combiner {
+  display: flex;
+  flex-direction: row;
+}
+
+mat-card {
+  width: 800px; /* Set a fixed width for the card */
+  max-width: 90%; /* Allow it to shrink for smaller screens */
+  margin: 20px auto; /* Center the card horizontally */
+  padding: 20px; /* Optional: add padding inside the card */
+  color: #03045e;
+}
+
+img {
+  width: 300px;
+}
+
+mat-card-actions {
+  position: absolute; /* Absolute positioning for placing button in the bottom right */
+  bottom: 16px; /* Distance from the bottom of the card */
+  right: 16px; /* Distance from the right side of the card */
+}
+
+button {
+  background-color: #caf0f8;
+  color: #03045e;
+  border: 2px solid #03045e;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+  margin-bottom: 10px;
+}
+
+button:hover {
+  background-color: #03045e;
+  color: #caf0f8;
+  border: 2px solid #caf0f8;
+}
