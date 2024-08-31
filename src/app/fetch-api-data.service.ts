@@ -6,7 +6,6 @@ import {
   HttpErrorResponse,
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserProfile } from './user-profile/user-profile.model';
 
 // Declaring the API URL that will provide data
@@ -208,5 +207,35 @@ export class UserProfileService extends ErrorHandlingService {
       .pipe(
         catchError(this.handleError) // Use your existing error handling method
       );
+  }
+
+  // Add a movie to user's favorite list
+  addFavoriteMovie(movieId: string): Observable<any> {
+    const token = localStorage.getItem('token');
+    const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
+    return this.http
+      .post(
+        `${apiUrl}/users/${currentUser.Username}/movies/${movieId}`,
+        {},
+        {
+          headers: new HttpHeaders({
+            Authorization: `Bearer ${token}`,
+          }),
+        }
+      )
+      .pipe(catchError(this.handleError));
+  }
+
+  // Remove a movie from user's favorite list
+  removeFavoriteMovie(movieId: string): Observable<any> {
+    const token = localStorage.getItem('token');
+    const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
+    return this.http
+      .delete(`${apiUrl}/users/${currentUser.Username}/movies/${movieId}`, {
+        headers: new HttpHeaders({
+          Authorization: `Bearer ${token}`,
+        }),
+      })
+      .pipe(catchError(this.handleError));
   }
 }
