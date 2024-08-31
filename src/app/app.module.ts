@@ -5,8 +5,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { Routes, RouterModule } from '@angular/router';
-
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -14,8 +12,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatIconModule } from '@angular/material/icon';
-import { MatToolbar } from '@angular/material/toolbar';
-import { MatMenu } from '@angular/material/menu';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatMenuModule } from '@angular/material/menu';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -33,13 +31,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { FavoriteListComponent } from './favorite-list/favorite-list.component';
 import { UpdateUserComponent } from './update-user/update-user.component';
 import { DateFormatPipe } from './user-profile/user-profile.component';
-
-const appRoutes: Routes = [
-  { path: 'welcome', component: WelcomePageComponent },
-  { path: 'movies', component: MovieCardComponent },
-  { path: 'profile', component: UserProfileComponent },
-  { path: '', redirectTo: 'welcome', pathMatch: 'prefix' },
-];
+import { SingleMovieComponent } from './single-movie/single-movie.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +48,7 @@ const appRoutes: Routes = [
     FavoriteListComponent,
     UpdateUserComponent,
     DateFormatPipe,
+    SingleMovieComponent,
   ],
   imports: [
     BrowserModule,
@@ -70,10 +63,9 @@ const appRoutes: Routes = [
     MatDialogModule,
     MatSnackBarModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes),
     MatIconModule,
-    MatToolbar,
-    MatMenu,
+    MatToolbarModule,
+    MatMenuModule,
     ReactiveFormsModule,
   ],
   providers: [provideAnimationsAsync()],
