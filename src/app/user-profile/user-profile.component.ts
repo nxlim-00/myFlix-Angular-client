@@ -59,11 +59,11 @@ export class UserProfileComponent implements OnInit {
             localStorage.removeItem('token');
             localStorage.removeItem('currentUser' || '{}');
 
-            // Navigate to the login page or home page
-            this.router.navigate(['/welcome']); // Change '/welcome' to the route you want to navigate to
-
             // Optionally, show a success message
             alert('Your account has been deleted successfully.');
+
+            // Navigate to the login page or home page
+            this.router.navigate(['/welcome']); // Change '/welcome' to the route you want to navigate to
           },
           error: (error) => {
             // Handle error
