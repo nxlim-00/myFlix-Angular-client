@@ -35,7 +35,11 @@
         >
           More Info
         </button>
-        <mat-icon class="favorite-icon">favorite_border</mat-icon>
+        <button mat-icon-button (click)="toggleFavorite(movie._id)">
+          <mat-icon>{{
+            isFavorite(movie._id) ? "favorite" : "favorite_border"
+          }}</mat-icon>
+        </button>
       </div>
     </mat-card-actions>
   </mat-card>
