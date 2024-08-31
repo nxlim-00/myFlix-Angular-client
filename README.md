@@ -1,27 +1,99 @@
-# MyFlixAngularClient
+# myFlix-client with Angular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.1.
+## Overview
 
-## Development server
+`myFlix Angular Client` is a web application that allows users to browse a movie database, view movie details, manage their favorite movies, and handle user accounts. The application is built using Angular and connects to a backend service for user authentication and movie data management.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Features
 
-## Code scaffolding
+- **Movie Browsing**: View a list of movies with details including title, description, genre, and director.
+- **Favorite Movies**: Add movies to your favorites list and manage them.
+- **User Profiles**: View, update user profile information, and delete the account.
+- **Authentication**: User login, registration, and account deletion.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Technologies Used
 
-## Build
+- Angular
+- Angular Material
+- RxJS
+- TypeScript
+- CSS
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Installation
 
-## Running unit tests
+### Prerequisites
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- [Node.js](https://nodejs.org/en/download/) (v14 or later)
+- [Angular CLI](https://angular.io/cli) (v14 or later)
 
-## Running end-to-end tests
+### Clone the Repository
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```bash
+git clone https://github.com/your-username/myFlix-Angular-client.git
+cd myFlix-Angular-client
+```
 
-## Further help
+### Install Dependencies
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+```bash
+npm install
+```
+
+### Run the Application
+
+```bash
+ng serve
+```
+
+The application will be available at `http://localhost:4200/`.
+
+## Usage
+
+1. **Home Page**: View a list of movies and browse their details.
+2. **Profile Page**: View and update your profile information.
+3. **Favorites**: Add or remove movies from your favorites list. 
+4. **Account Deletion**: Users can delete their account from the profile page.
+
+## Configuration
+
+### Environment Variables
+
+You may need to configure environment variables for connecting to your backend API. Update `src/environments/environment.ts` with the appropriate API endpoints.
+
+```typescript
+export const environment = {
+  production: false,
+  apiUrl: 'http://localhost:5000/api' // Update with your API endpoint
+};
+```
+
+### User Authentication
+
+Make sure the backend service is properly configured to handle authentication and authorization. The frontend expects the following endpoints:
+
+- **POST** `/api/users/register` - Register a new user
+- **POST** `/api/users/login` - Login a user
+- **GET** `/api/users/:userId` - Get user profile
+- **PUT** `/api/users/:userId` - Update user profile
+- **DELETE** `/api/users/:userId` - Delete user account
+- **POST** `/api/users/:userId/favorites` - Add movie to favorites
+- **DELETE** `/api/users/:userId/favorites/:movieId` - Remove movie from favorites
+
+## Contributing
+
+If you want to contribute to this project, please follow these steps:
+
+1. Fork the repository
+2. Create a new branch (`git checkout -b feature/your-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin feature/your-feature`)
+5. Create a new Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgements
+
+- [Angular](https://angular.io/) - Framework used
+- [Angular Material](https://material.angular.io/) - UI component library
