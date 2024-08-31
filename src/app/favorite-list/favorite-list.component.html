@@ -1,0 +1,27 @@
+<div class="container responsive-grid">
+  <mat-card *ngFor="let movie of favoriteMovies">
+    <mat-card-header>
+      <mat-card-title>{{ movie.Title }}</mat-card-title>
+    </mat-card-header>
+    <img
+      (click)="navigateToSingleMovie(movie)"
+      class="img"
+      [src]="movie.ImagePath"
+      [alt]="movie.Title"
+    />
+    <mat-card-content>
+      <p>{{ movie.Description }}</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <div class="icon-row">
+        <button mat-icon-button (click)="toggleFavorite(movie._id)">
+          <mat-icon>{{
+            favoriteMovieIds.includes(movie._id)
+              ? "favorite"
+              : "favorite_border"
+          }}</mat-icon>
+        </button>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</div>
