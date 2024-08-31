@@ -26,6 +26,10 @@ export class NavbarComponent {
     return !!localStorage.getItem('token');
   }
 
+  navigateToFavorites(): void {
+    this.router.navigate(['/favorites']);
+  }
+
   logout(): void {
     // Remove user data from local storage and navigate to welcome page
     localStorage.removeItem('token');
