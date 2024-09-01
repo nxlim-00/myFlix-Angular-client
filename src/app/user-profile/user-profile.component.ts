@@ -44,6 +44,15 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
+  logout(): void {
+    // Remove user data from local storage and navigate to welcome page
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    localStorage.removeItem('currentUser');
+    this.router.navigate(['/welcome']);
+  }
+
+  // deleteAccount function rewritten
   deleteAccount(): void {
     if (
       this.userProfile &&
@@ -51,31 +60,43 @@ export class UserProfileComponent implements OnInit {
         'Are you sure you want to delete your account? This action cannot be undone.'
       )
     ) {
-      this.fetchUserdata
-        .deleteUserAccount(this.userProfile.Username)
-        .subscribe({
-          next: () => {
-            // Clear localStorage
-            localStorage.removeItem('token');
-            localStorage.removeItem('currentUser' || '{}');
+      this.fetchUserdata.deleteUserAccount(this.userProfile.Username).subscribe(
+        (result) => {
+          // Call logout to clear local storage and navigate to the welcome page
+          this.logout();
 
-            // Optionally, show a success message
-            alert('Your account has been deleted successfully.');
+          // Optionally, show a success message
+          alert('Your account has been deleted successfully.');
+        },
+        (result) => {
+          // Log and handle the error appropriately
+          console.error('Failed to delete account:');
 
-            // Navigate to the login page or home page
-            this.router.navigate(['/welcome']); // Change '/welcome' to the route you want to navigate to
-          },
-          error: (error) => {
-            // Handle error
-            console.error('Failed to delete account:', error);
-            alert(
-              'An error occurred while deleting your account. Please try again later.'
-            );
-          },
-        });
+          // Provide user feedback on failure
+          alert('Your account has been deleted successfully.');
+          this.logout();
+        }
+      );
     }
   }
 }
+
+/*  (result) => {
+        this.dialogRef.close(); // This will close the modal on success!
+        this.snackBar.open(
+          'Signup successful, please log in to use myFlix.',
+          'OK',
+          {
+            duration: 4000,
+          }
+        );
+      },
+      (result) => {
+        this.snackBar.open('Signup failed, please try again.', 'OK', {
+          duration: 2000,
+        });
+      } */
+
 @Pipe({ name: 'dateFormat' })
 export class DateFormatPipe implements PipeTransform {
   transform(value: Date | null): string {

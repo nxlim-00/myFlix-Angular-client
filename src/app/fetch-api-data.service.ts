@@ -196,7 +196,6 @@ export class UserProfileService extends ErrorHandlingService {
   // Delete user account
   deleteUserAccount(username: string): Observable<any> {
     const token = localStorage.getItem('token');
-
     return this.http
       .delete(`${apiUrl}/users/${username}`, {
         headers: new HttpHeaders({
