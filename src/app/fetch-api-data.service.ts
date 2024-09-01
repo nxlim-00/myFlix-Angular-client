@@ -8,6 +8,9 @@ import {
 import { Observable, throwError } from 'rxjs';
 import { UserProfile } from './user-profile/user-profile.model';
 
+/**
+ * Base URL of the API.
+ */
 // Declaring the API URL that will provide data
 const apiUrl = 'https://myflixx-movie-app-2d5cece4bfb1.herokuapp.com';
 
@@ -17,6 +20,11 @@ const apiUrl = 'https://myflixx-movie-app-2d5cece4bfb1.herokuapp.com';
 export class ErrorHandlingService {
   constructor() {}
 
+  /**
+   * Handles HTTP errors by logging the error and returning an observable with a user-facing error message.
+   * @param {HttpErrorResponse} error - The HTTP error response.
+   * @returns {Observable<never>} An observable that emits an error.
+   */
   // Method to handle HTTP errors
   protected handleError(error: HttpErrorResponse): Observable<never> {
     if (error.error instanceof ErrorEvent) {
@@ -35,6 +43,11 @@ export class ErrorHandlingService {
     );
   }
 
+  /**
+   * Extracts data from HTTP response.
+   * @param {any} res - The HTTP response.
+   * @returns {any} The response body or an empty object.
+   */
   // Method to extract data from HTTP response
   protected extractResponseData(res: any): any {
     return res || {}; // Return response body or empty object if none
@@ -45,10 +58,20 @@ export class ErrorHandlingService {
   providedIn: 'root',
 })
 export class UserRegistrationService extends ErrorHandlingService {
+  /**
+   * Constructs the UserRegistrationService.
+   * @param {HttpClient} http - The HTTP client for making requests.
+   */
+
   constructor(private http: HttpClient) {
     super(); // Call the constructor of the parent class
   }
 
+  /**
+   * Registers a new user.
+   * @param {any} userDetails - The details of the user to register.
+   * @returns {Observable<any>} An observable of the registration response.
+   */
   // API call for user registration
   public userRegistration(userDetails: any): Observable<any> {
     console.log(userDetails);
@@ -66,10 +89,19 @@ export class UserRegistrationService extends ErrorHandlingService {
   providedIn: 'root',
 })
 export class UserLoginService extends ErrorHandlingService {
+  /**
+   * Constructs the UserLoginService.
+   * @param {HttpClient} http - The HTTP client for making requests.
+   */
   constructor(private http: HttpClient) {
     super();
   }
 
+  /**
+   * Logs in a user.
+   * @param {any} userDetails - The details of the user to log in.
+   * @returns {Observable<any>} An observable of the login response.
+   */
   // API call for user login
   public userLogin(userDetails: any): Observable<any> {
     return this.http
@@ -86,10 +118,18 @@ export class UserLoginService extends ErrorHandlingService {
   providedIn: 'root',
 })
 export class GetAllMoviesService extends ErrorHandlingService {
+  /**
+   * Constructs the GetAllMoviesService.
+   * @param {HttpClient} http - The HTTP client for making requests.
+   */
   constructor(private http: HttpClient) {
     super();
   }
 
+  /**
+   * Retrieves all movies.
+   * @returns {Observable<any>} An observable of the list of movies.
+   */
   // API call to get all movies
   getAllMovies(): Observable<any> {
     const token = localStorage.getItem('token'); // Retrieve token from localStorage
@@ -105,6 +145,11 @@ export class GetAllMoviesService extends ErrorHandlingService {
       );
   }
 
+  /**
+   * Retrieves a single movie by its ID.
+   * @param {string} movieId - The ID of the movie to retrieve.
+   * @returns {Observable<any>} An observable of the movie details.
+   */
   //API call to get single movie by id
   getSingleMovie(movieId: string): Observable<any> {
     const token = localStorage.getItem('token'); // Retrieve token from localStorage
@@ -125,10 +170,18 @@ export class GetAllMoviesService extends ErrorHandlingService {
   providedIn: 'root',
 })
 export class UserProfileService extends ErrorHandlingService {
+  /**
+   * Constructs the UserProfileService.
+   * @param {HttpClient} http - The HTTP client for making requests.
+   */
   constructor(private http: HttpClient) {
     super();
   }
 
+  /**
+   * Retrieves the current user's profile.
+   * @returns {Observable<UserProfile>} An observable of the user profile.
+   */
   // Get user profile data
   getUserProfile(): Observable<UserProfile> {
     const token = localStorage.getItem('token');
@@ -163,6 +216,11 @@ export class UserProfileService extends ErrorHandlingService {
       );
   }
 
+  /**
+   * Updates the current user's profile.
+   * @param {Partial<UserProfile>} userProfile - The updated profile data.
+   * @returns {Observable<UserProfile>} An observable of the updated user profile.
+   */
   // Update user profile data
   updateUserProfile(
     userProfile: Partial<UserProfile>
@@ -193,6 +251,11 @@ export class UserProfileService extends ErrorHandlingService {
       .pipe(catchError(this.handleError));
   }
 
+  /**
+   * Deletes the current user's account.
+   * @param {string} username - The username of the account to delete.
+   * @returns {Observable<any>} An observable of the deletion response.
+   */
   // Delete user account
   deleteUserAccount(username: string): Observable<any> {
     const token = localStorage.getItem('token');
@@ -208,6 +271,11 @@ export class UserProfileService extends ErrorHandlingService {
       );
   }
 
+  /**
+   * Adds a movie to the user's favorite list.
+   * @param {string} movieId - The ID of the movie to add to favorites.
+   * @returns {Observable<any>} An observable of the addition response.
+   */
   // Add a movie to user's favorite list
   addFavoriteMovie(movieId: string): Observable<any> {
     const token = localStorage.getItem('token');
@@ -225,6 +293,11 @@ export class UserProfileService extends ErrorHandlingService {
       .pipe(catchError(this.handleError));
   }
 
+  /**
+   * Removes a movie from the user's favorite list.
+   * @param {string} movieId - The ID of the movie to remove from favorites.
+   * @returns {Observable<any>} An observable of the removal response.
+   */
   // Remove a movie from user's favorite list
   removeFavoriteMovie(movieId: string): Observable<any> {
     const token = localStorage.getItem('token');
