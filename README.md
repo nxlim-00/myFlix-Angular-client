@@ -89,6 +89,10 @@ If you want to contribute to this project, please follow these steps:
 4. Push to the branch (`git push origin feature/your-feature`)
 5. Create a new Pull Request
 
+## Hosting
+
+This project is hosted on gh-pages: https://nxlim-00.github.io/myFlix-Angular-client/
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
